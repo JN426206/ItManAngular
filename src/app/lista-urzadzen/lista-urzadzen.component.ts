@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Firma} from "../models/firma";
-import {ActivatedRoute} from "@angular/router";
-import {FirmaService} from "../services/firma.service";
+import {Firma} from '../models/firma';
+import {ActivatedRoute} from '@angular/router';
+import {FirmaService} from '../services/firma.service';
+import {Urzadzenie} from '../models/urzadzenie';
+import {UrzadzenieService} from '../services/urzadzenie.service';
 
 @Component({
   selector: 'app-lista-urzadzen',
@@ -13,9 +15,9 @@ export class ListaUrzadzenComponent implements OnInit {
   firma: Firma;
   private sub: any;
   idFirmy: number;
-  urzadzenia
+  urzadzenia: Urzadzenie[];
 
-  constructor(private route: ActivatedRoute, private firmaService: FirmaService) { }
+  constructor(private route: ActivatedRoute, private firmaService: FirmaService, private urzadzenieService: UrzadzenieService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -28,8 +30,12 @@ export class ListaUrzadzenComponent implements OnInit {
   getFirma(idFirmy: number): void {
     this.firmaService.getFirma(this.idFirmy).subscribe( firma => {
       this.firma = firma;
-
+      this.getUrzadzeniaByFirma(idFirmy);
     });
+  }
+
+  getUrzadzeniaByFirma(idFirmy: number): void {
+    this.urzadzenieService.getUrzadzeniaByIdFirmy(idFirmy).subscribe( urzadzenia => this.urzadzenia = urzadzenia);
   }
 
 }

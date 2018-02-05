@@ -13,8 +13,8 @@ export class Urzadzenie {
   opis: string;
   firma: Firma;
 
-  constructor(nazwa: string, rodzaj: string, status: string, producent: string, model: string, nrSeryjny: string, firma: Firma, dataUtworzenia: any, systemOperacyjny: string, opis: string,
-              idUrzadzenia: number) {
+  constructor(nazwa: string, rodzaj: string, status: string, producent: string, model: string, nrSeryjny: string, firma: Firma, dataUtworzenia: any, systemOperacyjny?: string, opis?: string,
+              idUrzadzenia?: number) {
     console.log(`Add firma: ${nazwa} ${adres.miasto}`);
     this.nazwa = nazwa;
     this.status = status;

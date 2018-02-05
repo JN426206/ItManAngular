@@ -11,6 +11,7 @@
           <span [class.selected]="firma === selectedFirma" >{{firma.nazwa}} ({{firma.nip}})</span>
           <div *ngIf="firma === selectedFirma">
             <a [routerLink]="['/urzadzenia', firma.idFirmy]">Urządzenia</a>
+            <a [routerLink]="['/hasla', firma.idFirmy]">Hasła</a>
           </div>
         </li>
       </ul>
