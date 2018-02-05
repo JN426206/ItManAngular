@@ -1,0 +1,19 @@
+<div class="Box">
+  <div class="lista">
+    <div class="title">
+      Wybierz firmę
+    </div>
+    <div class="content">
+      <label>Znaleziono firm: {{firmy.length}}</label>
+      <ul>
+        <li *ngFor="let firma of firmy" class="li" (click)="onSelect(firma)">
+          <div class="liArrowRight" [class.liArrowDown]="firma === selectedFirma"></div>
+          <span [class.selected]="firma === selectedFirma" >{{firma.nazwa}} ({{firma.nip}})</span>
+          <div *ngIf="firma === selectedFirma">
+            <a [routerLink]="['/urzadzenia', firma.idFirmy]">Urządzenia</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

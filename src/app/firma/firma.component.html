@@ -1,0 +1,18 @@
+<ul>
+  <li *ngFor="let firma of firmy">{{firma.nazwa}} Miasto: {{firma.adres.miasto}}</li>
+</ul>
+Dodaj firmę
+<label>Nazwa:
+  <input #nazwa/>
+</label>
+<label>Nip:
+  <input #nip/>
+</label>
+<label>Regon:
+  <input #regon/>
+</label>
+<button (click)="
+add(nazwa.value,nip.value,regon.value);
+ nazwa.value='';
+ nip.value=''; regon.value=''
+">Dodaj</button>
