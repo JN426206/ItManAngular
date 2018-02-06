@@ -1,3 +1,14 @@
+<div class="modal" id="alertDelModal" *ngIf="showDelModalV === true">
+  <div class="alertDel">
+      <div class="alertDelTitle">Czy na pewno chcesz usunąć firmę {{firmaToDelete.nazwa}}?</div>
+      <div class="alertDelButtons">
+        <button (click)="delFirma(firmaToDelete)">Tak</button>
+
+        <button (click)="showDelModal(false)">Nie</button>
+      </div>
+  </div>
+</div>
+
 <div class="Box">
   <div class="lista">
     <div class="title">
@@ -6,21 +17,23 @@
     <div class="content">
       <label>Znaleziono firm: {{firmy.length}}</label>
       <ul>
-        <li *ngFor="let firma of firmy" class="li" (click)="onSelect(firma)">
+        <li *ngFor="let firma of firmy" class="li">
           <div class="liArrowRight" [class.liArrowDown]="firma === selectedFirma"></div>
-          <span [class.selected]="firma === selectedFirma" >{{firma.nazwa}} ({{firma.nip}})</span>
+          <span [class.selected]="firma === selectedFirma" (click)="onSelect(firma)">{{firma.nazwa}} ({{firma.nip}})</span>
           <div *ngIf="firma === selectedFirma">
             <a [routerLink]="['/urzadzenia', firma.idFirmy]">Urządzenia</a>
             <a [routerLink]="['/hasla', firma.idFirmy]">Hasła</a>
+            <button (click)="showDelModal(true, firma)">Usuń firmę</button>
+            <button (click)="showOrHideBoxAddEdit(true, true, firma)">Edytuj firmę</button>
           </div>
         </li>
       </ul>
     </div>
-    <button (click)="showOrHideBoxAdd()" class="button">
+    <button (click)="showOrHideBoxAddEdit(true, false)" class="button">
       Dodaj firmę
     </button>
   </div>
 </div>
 <div class="box" *ngIf="showBoxAdd === true">
-  <app-firma (fimaAdded)="getFirmy()"></app-firma>
+  <app-firma (fimaAdded)="onNewFirma($firma)" (hideMe)="showOrHideBoxAddEdit(false)" [editing]="editingFirma" [(firma)]="firmaToDelete"></app-firma>
 </div>

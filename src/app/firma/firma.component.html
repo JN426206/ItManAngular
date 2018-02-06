@@ -1,6 +1,6 @@
 <div class="Box">
   <div class="title">
-    Dodaj firmę
+    {{title}}
   </div>
   <form (ngSubmit)="onSubmit(firmaForm)" #firmaForm="ngForm">
     <div class="">
@@ -45,7 +45,7 @@
       </div>
 
       <div class="inputBox two-columns">
-        <label for="nrBudynku">Nip:</label>
+        <label for="nrBudynku">Numer budynku:</label>
         <input type="text" placeholder="Nnumer budynku" id="nrBudynku" maxlength="10" required [(ngModel)]="modelAdresu.nrBudynku" name="nrBudynku" #nrBudynku="ngModel"/>
       </div>
       <div [hidden]="nrBudynku.valid || nrBudynku.pristine"
@@ -77,6 +77,8 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="!firmaForm.form.valid">Dodaj</button>
+    <button type="submit" [disabled]="!firmaForm.form.valid" *ngIf="!editing">Dodaj</button>
+    <button type="submit" [disabled]="!firmaForm.form.valid" *ngIf="editing">Edytuj </button>
+    <button (click)="onHideMe()">Zamknij</button>
   </form>
 </div>

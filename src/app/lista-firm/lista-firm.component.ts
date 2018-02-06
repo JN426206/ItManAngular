@@ -13,12 +13,22 @@ export class ListaFirmComponent implements OnInit {
 
   firmy: Firma[] = [];
   selectedFirma: Firma;
-  showBoxAdd: boolean = false;
+  showBoxAdd = false;
+  showDelModalV = false;
+  editingFirma = false;
+  firmaToDelete: Firma;
 
   constructor(private firmaService: FirmaService, private adresService: AdresService) { }
 
 
   ngOnInit() {
+    this.getFirmy();
+    this.editingFirma = false;
+  }
+
+  onNewFirma(firma: Firma) {
+    // console.log("new firma: ", firma.getId());
+    this.showBoxAdd = false;
     this.getFirmy();
   }
 
@@ -29,6 +39,14 @@ export class ListaFirmComponent implements OnInit {
       });
   }
 
+  delFirma(firma: Firma) {
+    console.log(`Deleting: ${firma.nazwa}`);
+    this.firmaService.removeFirma(firma).subscribe(firmaa => {
+      this.showDelModal(false);
+      this.getFirmy();
+    });
+  }
+
   onSelect(firma: Firma): void {
     if ( this.selectedFirma === firma ) {
       delete this.selectedFirma;
@@ -37,12 +55,15 @@ export class ListaFirmComponent implements OnInit {
     }
   }
 
-  showOrHideBoxAdd(): void {
-    if (this.showBoxAdd) {
-      this.showBoxAdd = false;
-    } else {
-      this.showBoxAdd = true;
-    }
+  showDelModal(show: boolean, firma?: Firma) {
+    this.firmaToDelete = firma;
+    this.showDelModalV = show;
+  }
+
+  showOrHideBoxAddEdit(show: boolean, edit?: boolean, firma?: Firma): void {
+    this.showBoxAdd = show;
+    this.firmaToDelete = firma;
+    this.editingFirma = edit;
   }
 
 }

@@ -36,6 +36,10 @@ export class FirmaService {
     );
   }
 
+  removeFirma(firma: Firma) {
+    return this.http.delete(`${this.firmaUrl}${firma.getId()}`);
+  }
+
   private handleError<T> (operation = 'operatrion', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

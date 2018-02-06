@@ -1,11 +1,15 @@
 import {Adres} from './adres';
 
 export class Firma {
-  idFirmy: number;
-  nazwa: string;
-  nip: string;
-  regon: string;
-  adres: Adres;
+  public idFirmy: number;
+  public nazwa: string;
+  public nip: string;
+  public regon: string;
+  public adres: Adres;
+
+  public getId(): number{
+    return this.idFirmy;
+  }
 
   // constructor(obj?: any) {
   //   // this.idFirmy = (obj && obj.idFirmy) || Math.floor(Math.random() * 1000 );
@@ -20,9 +24,9 @@ export class Firma {
   //   this.adres = (obj && obj.adres);
   // }
 
-  constructor(nazwa: string, nip: string, regon: string,  adres: Adres, idFirmy?: number) {
+  constructor(nazwa: string, nip: string, regon: string,  adres: Adres, id_Firmy?: number) {
     console.log(`Add firma: ${nazwa} ${adres.miasto}`);
-    this.idFirmy = idFirmy;
+    this.idFirmy = id_Firmy;
     this.nazwa = nazwa;
     this.regon = regon;
     this.nip = nip;
