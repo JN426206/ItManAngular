@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {Adres} from '../models/adres';
 import {Firma} from '../models/firma';
 import {FirmaService} from '../services/firma.service';
@@ -13,8 +13,10 @@ export class ListaFirmComponent implements OnInit {
 
   firmy: Firma[] = [];
   selectedFirma: Firma;
+  showBoxAdd: boolean = false;
 
   constructor(private firmaService: FirmaService, private adresService: AdresService) { }
+
 
   ngOnInit() {
     this.getFirmy();
@@ -34,4 +36,13 @@ export class ListaFirmComponent implements OnInit {
       this.selectedFirma = firma;
     }
   }
+
+  showOrHideBoxAdd(): void {
+    if (this.showBoxAdd) {
+      this.showBoxAdd = false;
+    } else {
+      this.showBoxAdd = true;
+    }
+  }
+
 }

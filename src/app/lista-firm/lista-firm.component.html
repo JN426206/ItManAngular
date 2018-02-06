@@ -16,5 +16,11 @@
         </li>
       </ul>
     </div>
+    <button (click)="showOrHideBoxAdd()" class="button">
+      Dodaj firmę
+    </button>
   </div>
+</div>
+<div class="box" *ngIf="showBoxAdd === true">
+  <app-firma (fimaAdded)="getFirmy()"></app-firma>
 </div>

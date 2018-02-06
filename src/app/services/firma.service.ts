@@ -26,7 +26,7 @@ export class FirmaService {
   }
 
   getFirma(idFirmy: number): Observable<Firma> {
-    let params = new HttpParams().set('idFirmy', idFirmy);
+    let params = new HttpParams().set('idFirmy', `${idFirmy}`);
     return this.http.get<Firma>(`${this.firmaUrl}${idFirmy}`);
   }
 

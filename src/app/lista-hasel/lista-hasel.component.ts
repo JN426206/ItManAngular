@@ -15,6 +15,7 @@ export class ListaHaselComponent implements OnInit {
   hasla: Haslo[];
   firma: Firma;
   idFirmy: number;
+  private sub: any;
 
   constructor(private route: ActivatedRoute, private firmaService: FirmaService, private hasloService: HasloService) { }
 

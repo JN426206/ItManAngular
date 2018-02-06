@@ -10,9 +10,10 @@ import {FirmaService} from './services/firma.service';
 import {AdresService} from './services/adres.service';
 import { ListaFirmComponent } from './lista-firm/lista-firm.component';
 import { ListaUrzadzenComponent } from './lista-urzadzen/lista-urzadzen.component';
-import {UrzadzenieService} from "./services/urzadzenie.service";
+import {UrzadzenieService} from './services/urzadzenie.service';
 import { ListaHaselComponent } from './lista-hasel/lista-hasel.component';
-import {HasloService} from "./services/haslo.service";
+import {HasloService} from './services/haslo.service';
+import {FormsModule} from '@angular/forms';
 
 const ROUTES: Routes = [
   { path: '', redirectTo:  'firmy', pathMatch: 'full'},
@@ -32,6 +33,8 @@ const ROUTES: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserModule,
+    FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [FirmaService, AdresService, UrzadzenieService, HasloService],

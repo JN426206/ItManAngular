@@ -15,7 +15,7 @@ export class Urzadzenie {
 
   constructor(nazwa: string, rodzaj: string, status: string, producent: string, model: string, nrSeryjny: string, firma: Firma, dataUtworzenia: any, systemOperacyjny?: string, opis?: string,
               idUrzadzenia?: number) {
-    console.log(`Add firma: ${nazwa} ${adres.miasto}`);
+    console.log(`Add firma: ${nazwa}`);
     this.nazwa = nazwa;
     this.status = status;
     this.producent = producent;

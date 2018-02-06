@@ -1,0 +1,10 @@
+.nav-bar{
+  width: 200px;
+  margin: 0 auto 10px auto;
+}
+.nav-bar ul {
+
+}
+.nav-bar ul li {
+  list-style: none;
+}

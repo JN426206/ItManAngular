@@ -1,18 +1,82 @@
-<ul>
-  <li *ngFor="let firma of firmy">{{firma.nazwa}} Miasto: {{firma.adres.miasto}}</li>
-</ul>
-Dodaj firmę
-<label>Nazwa:
-  <input #nazwa/>
-</label>
-<label>Nip:
-  <input #nip/>
-</label>
-<label>Regon:
-  <input #regon/>
-</label>
-<button (click)="
-add(nazwa.value,nip.value,regon.value);
- nazwa.value='';
- nip.value=''; regon.value=''
-">Dodaj</button>
+<div class="Box">
+  <div class="title">
+    Dodaj firmę
+  </div>
+  <form (ngSubmit)="onSubmit(firmaForm)" #firmaForm="ngForm">
+    <div class="">
+      <div class="inputBox two-columns">
+        <label for="nazwa">Nazwa:</label>
+        <input type="text" placeholder="Nazwa firmy" id="nazwa" maxlength="100" required [(ngModel)]="modelFirmy.nazwa" name="nazwa" #nazwa="ngModel"/>
+      </div>
+      <div [hidden]="nazwa.valid || nazwa.pristine"
+           class="alert alert-danger">
+        Nazwa jest wymagana
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="nip">Nip:</label>
+        <input type="text" placeholder="Nip firmy" id="nip" maxlength="10" required [(ngModel)]="modelFirmy.nip" name="nip" #nip="ngModel"/>
+      </div>
+      <div [hidden]="nip.valid || nip.pristine"
+           class="alert alert-danger">
+        Nip jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="regon">Regon:</label>
+        <input type="text" placeholder="Regon firmy" id="regon" maxlength="15" required [(ngModel)]="modelFirmy.regon" name="regon" #regon="ngModel"/>
+      </div>
+    </div>
+    <div [hidden]="regon.valid || regon.pristine"
+         class="alert alert-danger">
+      Regon jest wymagany
+    </div>
+
+
+    <div class="">
+      Adres
+      <div class="inputBox two-columns">
+        <label for="ulica">Ulica:</label>
+        <input type="text" placeholder="Ulica" id="ulica" maxlength="30" required [(ngModel)]="modelAdresu.ulica" name="ulica" #ulica="ngModel"/>
+      </div>
+      <div [hidden]="ulica.valid || ulica.pristine"
+           class="alert alert-danger">
+        Ulica jest wymagana
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="nrBudynku">Nip:</label>
+        <input type="text" placeholder="Nnumer budynku" id="nrBudynku" maxlength="10" required [(ngModel)]="modelAdresu.nrBudynku" name="nrBudynku" #nrBudynku="ngModel"/>
+      </div>
+      <div [hidden]="nrBudynku.valid || nrBudynku.pristine"
+           class="alert alert-danger">
+        Numer budynku jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="miasto">Miasto:</label>
+        <input type="text" placeholder="Miasto" id="miasto" maxlength="30" required [(ngModel)]="modelAdresu.miasto" name="miasto" #miasto="ngModel"/>
+      </div>
+      <div [hidden]="miasto.valid || miasto.pristine"
+           class="alert alert-danger">
+        Miasto jest wymagane
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="kodPocztowy">Kod pocztowy:</label>
+        <input type="text" placeholder="Kod pocztowy" id="kodPocztowy" maxlength="6" required [(ngModel)]="modelAdresu.kodPocztowy" name="kodPocztowy" #kodPocztowy="ngModel"/>
+      </div>
+      <div [hidden]="kodPocztowy.valid || kodPocztowy.pristine"
+           class="alert alert-danger">
+        Kod pocztowy jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="telefon">Telefon:</label>
+        <input type="text" placeholder="Telefon" id="telefon" maxlength="10" [(ngModel)]="modelAdresu.telefon" name="telefon" #telefon="ngModel"/>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!firmaForm.form.valid">Dodaj</button>
+  </form>
+</div>

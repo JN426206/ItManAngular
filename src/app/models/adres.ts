@@ -7,8 +7,8 @@ export class Adres {
   telefon: string;
 
   constructor(ulica: string, nrBudynku: string, miasto: string, kodPocztowy: string, telefon?: string, idAdres?: number) {
-    this.idAdres = (idAdres && this.idAdres);
-    this.telefon = (telefon && this.telefon);
+    this.idAdres = idAdres;
+    this.telefon = telefon;
     this.ulica = ulica;
     this.nrBudynku = nrBudynku;
     this.miasto = miasto;
