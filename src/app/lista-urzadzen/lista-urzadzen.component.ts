@@ -4,7 +4,6 @@ import {ActivatedRoute} from '@angular/router';
 import {FirmaService} from '../services/firma.service';
 import {Urzadzenie} from '../models/urzadzenie';
 import {UrzadzenieService} from '../services/urzadzenie.service';
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-lista-urzadzen',
