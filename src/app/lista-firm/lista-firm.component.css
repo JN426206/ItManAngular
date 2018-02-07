@@ -70,3 +70,22 @@
   padding-left: 3px;
   border-top: 1px solid silver;
 }
+.link{
+  margin: 5px 0px 2px 25px;
+  display: flex;
+}
+.link a{text-decoration: none;
+  border: 1px solid black;
+  padding: 3px;
+  margin: 0px;
+  color: black;
+  border-top: 1px solid silver;
+  border-left: 1px solid silver;
+}
+
+.link a:hover {
+  border: 1px solid silver;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+
+}

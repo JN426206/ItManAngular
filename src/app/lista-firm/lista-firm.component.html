@@ -21,10 +21,10 @@
           <div class="liArrowRight" [class.liArrowDown]="firma === selectedFirma"></div>
           <span [class.selected]="firma === selectedFirma" (click)="onSelect(firma)">{{firma.nazwa}} ({{firma.nip}})</span>
           <div *ngIf="firma === selectedFirma">
-            <a [routerLink]="['/urzadzenia', firma.idFirmy]">Urządzenia</a>
-            <a [routerLink]="['/hasla', firma.idFirmy]">Hasła</a>
-            <button (click)="showDelModal(true, firma)">Usuń firmę</button>
-            <button (click)="showOrHideBoxAddEdit(true, true, firma)">Edytuj firmę</button>
+            <div class="link"><a [routerLink]="['/urzadzenia', firma.idFirmy]">Urządzenia</a></div>
+            <div class="link"><a [routerLink]="['/hasla', firma.idFirmy]">Hasła</a></div>
+            <div class="link"><button (click)="showDelModal(true, firma)">Usuń firmę</button></div>
+            <div class="link"><button (click)="showOrHideBoxAddEdit(true, true, firma)">Edytuj firmę</button></div>
           </div>
         </li>
       </ul>
