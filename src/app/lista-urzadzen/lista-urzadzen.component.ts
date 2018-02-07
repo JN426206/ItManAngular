@@ -71,7 +71,7 @@ export class ListaUrzadzenComponent implements OnInit {
 
   removeUrzadzenie(urzadzenie: Urzadzenie) {
     console.log(`Deleting: ${urzadzenie.nazwa}`);
-    this.urzadzenieService.removeUrzadzenie(urzadzenie).subscribe(urz => {
+    this.urzadzenieService.removeUrzadzenie(urzadzenie).subscribe(() => {
       this.showDelModal(false);
       this.getUrzadzeniaByFirma(this.idFirmy);
       this.editingUrzadzenie = false;
