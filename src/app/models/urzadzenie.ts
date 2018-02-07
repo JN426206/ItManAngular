@@ -17,6 +17,7 @@ export class Urzadzenie {
               idUrzadzenia?: number) {
     console.log(`Add firma: ${nazwa}`);
     this.nazwa = nazwa;
+    this.rodzaj = rodzaj;
     this.status = status;
     this.producent = producent;
     this.model = model;
@@ -29,3 +30,5 @@ export class Urzadzenie {
   }
 
 }
+
+export const RODZAJE = ['L', 'K', 'TL', 'T'];

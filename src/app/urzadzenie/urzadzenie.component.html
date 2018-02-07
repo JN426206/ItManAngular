@@ -1,0 +1,79 @@
+
+<div class="Box">
+  <div class="title">
+    {{title}}
+  </div>
+  <form (ngSubmit)="onSubmit(urzadzenieForm)" #urzadzenieForm="ngForm">
+    <div class="">
+      <div class="inputBox two-columns">
+        <label for="nazwa">Nazwa:</label>
+        <input type="text" placeholder="Nazwa urządzenia" id="nazwa" maxlength="50" required [(ngModel)]="modelUrzadzenia.nazwa" name="nazwa" #nazwa="ngModel"/>
+      </div>
+      <div [hidden]="nazwa.valid || nazwa.pristine"
+           class="alert alert-danger">
+        Nazwa jest wymagana
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="rodzaj">Rodzaj:</label>
+        <select id="rodzaj" name="rodzaj" [(ngModel)]="modelUrzadzenia.rodzaj" #rodzaj="ngModel" required>
+          <option *ngFor="let rodzajj of rodzaje" [value]="rodzajj">{{rodzajj}}</option>
+        </select>
+      </div>
+      <div [hidden]="rodzaj.valid || rodzaj.pristine"
+           class="alert alert-danger">
+        Rodaj jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="status">Status:</label>
+        <input type="text" placeholder="Status urządzenia" id="status" maxlength="20" required [(ngModel)]="modelUrzadzenia.status" name="status" #status="ngModel"/>
+      </div>
+      <div [hidden]="status.valid || status.pristine"
+           class="alert alert-danger">
+        Status jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="producent">Producent:</label>
+        <input type="text" placeholder="Producent" id="producent" maxlength="30" required [(ngModel)]="modelUrzadzenia.producent" name="producent" #producent="ngModel"/>
+      </div>
+      <div [hidden]="producent.valid || producent.pristine"
+           class="alert alert-danger">
+        Producent jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="moddel">Model:</label>
+        <input type="text" placeholder="Model" id="moddel" maxlength="30" required [(ngModel)]="modelUrzadzenia.model" name="moddel" #moddel="ngModel"/>
+      </div>
+      <div [hidden]="moddel.valid || moddel.pristine"
+           class="alert alert-danger">
+        Model jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="nrSeryjny">Numer seryjny:</label>
+        <input type="text" placeholder="Numer seryjny" id="nrSeryjny" maxlength="150" required [(ngModel)]="modelUrzadzenia.nrSeryjny" name="nrSeryjny" #nrSeryjny="ngModel"/>
+      </div>
+      <div [hidden]="nrSeryjny.valid || nrSeryjny.pristine"
+           class="alert alert-danger">
+        Numer seryjny jest wymagany
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="systemOperacyjny">System operacyjny:</label>
+        <input type="text" placeholder="System operacyjny" id="systemOperacyjny" maxlength="45" [(ngModel)]="modelUrzadzenia.systemOperacyjny" name="systemOperacyjny" #systemOperacyjny="ngModel"/>
+      </div>
+
+      <div class="inputBox two-columns">
+        <label for="opis">Opis:</label>
+        <textarea placeholder="Opis" id="opis" maxlength="1000" [(ngModel)]="modelUrzadzenia.opis" name="opis" #opis="ngModel"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!urzadzenieForm.form.valid" *ngIf="!editing">Dodaj</button>
+    <button type="submit" [disabled]="!urzadzenieForm.form.valid" *ngIf="editing">Edytuj </button>
+    <button (click)="onHideMe()">Zamknij</button>
+  </form>
+</div>

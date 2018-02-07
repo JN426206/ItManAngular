@@ -4,7 +4,7 @@ import {FirmaService} from '../services/firma.service';
 import {Adres} from '../models/adres';
 import {AdresService} from '../services/adres.service';
 import { NgForm } from '@angular/forms';
-import {isUndefined} from "util";
+import {isUndefined} from 'util';
 
 @Component({
   selector: 'app-firma',
@@ -54,18 +54,33 @@ export class FirmaComponent implements OnInit, OnChanges {
     if (!isUndefined(changeRecord.firma)) {
       if (!isUndefined(changeRecord.firma.currentValue)) {
         console.log(this.firma.nazwa);
-        this.modelAdresu = this.firma.adres;
-        this.modelFirmy = this.firma;
+        this.modelAdresu = new Adres(this.firma.adres.ulica, this.firma.adres.nrBudynku, this.firma.adres.miasto, this.firma.adres.kodPocztowy, this.firma.adres.telefon, this.firma.adres.idAdres);
+        this.modelFirmy = new Firma(this.firma.nazwa, this.firma.nip, this.firma.regon, this.modelAdresu, this.firma.getId());
+        this.firma = this.modelFirmy;
         this.changeTitle();
+
       }
     }
   }
 
   onSubmit(form: NgForm) {
-    console.log(`Adding firma`, this.modelFirmy.nazwa);
-    this.add(new Firma(this.modelFirmy.nazwa, this.modelFirmy.nip, this.modelFirmy.regon,
-      new Adres(this.modelAdresu.ulica, this.modelAdresu.nrBudynku, this.modelAdresu.miasto, this.modelAdresu.kodPocztowy, this.modelAdresu.telefon)));
-    form.reset();
+    if (this.editing) {
+      console.log(`Adding firma`, this.modelFirmy.nazwa);
+      this.update(this.modelFirmy);
+      form.reset();
+    } else {
+      console.log(`Adding firma`, this.modelFirmy.nazwa);
+      this.add(new Firma(this.modelFirmy.nazwa, this.modelFirmy.nip, this.modelFirmy.regon,
+        new Adres(this.modelAdresu.ulica, this.modelAdresu.nrBudynku, this.modelAdresu.miasto, this.modelAdresu.kodPocztowy, this.modelAdresu.telefon)));
+      form.reset();
+    }
+  }
+
+  update(firma: Firma) {
+    this.firmaService.updateFirma(this.firma).subscribe(firmaa => {
+      this.firma = firmaa;
+      this.sendEmit(this.firma);
+    });
   }
 
   add(firma: Firma) {

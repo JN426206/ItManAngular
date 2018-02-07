@@ -14,6 +14,7 @@ import {UrzadzenieService} from './services/urzadzenie.service';
 import { ListaHaselComponent } from './lista-hasel/lista-hasel.component';
 import {HasloService} from './services/haslo.service';
 import {FormsModule} from '@angular/forms';
+import { UrzadzenieComponent } from './urzadzenie/urzadzenie.component';
 
 const ROUTES: Routes = [
   { path: '', redirectTo:  'firmy', pathMatch: 'full'},
@@ -29,6 +30,7 @@ const ROUTES: Routes = [
     ListaFirmComponent,
     ListaUrzadzenComponent,
     ListaHaselComponent,
+    UrzadzenieComponent,
   ],
   imports: [
     BrowserModule,

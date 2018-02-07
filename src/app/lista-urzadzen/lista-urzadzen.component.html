@@ -1,3 +1,98 @@
-<ul>
-  <li *ngFor="let urzadzenie of urzadzenia">{{urzadzenie.nazwa}}</li>
-</ul>
+<div class="modal" id="alertDelModal" *ngIf="showDelModalV === true">
+  <div class="alertDel">
+    <div class="alertDelTitle">Czy na pewno chcesz usunąć urządzenie ?</div>
+    <div class="alertDelButtons">
+      <button (click)="removeUrzadzenie(selectedUrzadzenie)">Tak</button>
+
+      <button (click)="showDelModal(false)">Nie</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="alertDelModal2" *ngIf="showDelSelModalV === true">
+  <div class="alertDel">
+    <div class="alertDelTitle">Czy na pewno chcesz usunąć urządzenie(a) ?</div>
+    <ul>
+      <li *ngFor="let urzadzenie of cbSecectedUrzadzania">{{urzadzenie.nazwa}}</li>
+    </ul>
+    <div class="alertDelButtons">
+      <button (click)="removeUrzadzenia()">Tak</button>
+
+      <button (click)="showDellSelectedCb(false)">Nie</button>
+    </div>
+  </div>
+</div>
+
+<div class="Box">
+  <div class="lista">
+    <div class="title">
+      Urządzenia
+    </div>
+    <div class="content">
+      <label>Znaleziono urzadzeń: {{urzadzenia.length}}</label>
+      <div>
+        Akcja dla zaznaczonych:
+        <select>
+          <option>Usuń zaznaczone</option>
+        </select>
+        <button [disabled]="cbSecectedUrzadzania.length == 0" (click)="showDellSelectedCb(true)">Wykonaj</button>
+      </div>
+      <table>
+        <tr>
+          <th>
+            <input type="checkbox" name="selAll" (change)="selectAll($event)">
+          </th>
+          <th>
+            Akcje
+          </th>
+          <th>
+            Nazwa
+          </th>
+          <th>
+            Status
+          </th>
+          <th>
+            Rodzaj
+          </th>
+          <th>
+            Model
+          </th>
+          <th>
+            System operacyjny
+          </th>
+        </tr>
+        <tr *ngFor="let urzadzenie of urzadzenia">
+          <td>
+            <input type="checkbox" id="cb{{urzadzenie.idUrzadzenia}}" (change)="updateCbSelectedUrzadzeni(urzadzenie, $event)">
+          </td>
+          <td>
+            <button (click)="showOrHideBoxAddEdit(true, true, urzadzenie)" title="Edytuj urządzenie">E</button>
+            <button (click)="showDelModal(true, urzadzenie)" title="Usuń urządzenie">X</button>
+          </td>
+          <td (click)="onTrClicked(urzadzenie)">
+            {{urzadzenie.nazwa}}
+          </td>
+          <td (click)="onTrClicked(urzadzenie)">
+            {{urzadzenie.status}}
+          </td>
+          <td (click)="onTrClicked(urzadzenie)">
+            {{urzadzenie.rodzaj}}
+          </td>
+          <td (click)="onTrClicked(urzadzenie)">
+            {{urzadzenie.model}}
+          </td>
+          <td (click)="onTrClicked(urzadzenie)">
+            {{urzadzenie.systemOperacyjny}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <button (click)="showOrHideBoxAddEdit(true, false)" class="button">
+      Dodaj urządzenie
+    </button>
+  </div>
+</div>
+<div class="box" *ngIf="showBoxAdd === true">
+  <!--<app-firma (fimaAdded)="onNewFirma($firma)" (hideMe)="showOrHideBoxAddEdit(false)" [editing]="editingFirma" [firma]="firmaToDelete"></app-firma>-->
+  <app-urzadzenie (urzadzenieAddedOrEdited)="onNewUrzadzenie()" (hideMe)="showOrHideBoxAddEdit(false)" [editing]="editingUrzadzenie" [firma]="firma" [selectedUrzadzenie]="selectedUrzadzenie"></app-urzadzenie>
+</div>

@@ -44,6 +44,8 @@ export class ListaFirmComponent implements OnInit {
     this.firmaService.removeFirma(firma).subscribe(firmaa => {
       this.showDelModal(false);
       this.getFirmy();
+      this.editingFirma = false;
+      this.showBoxAdd = false;
     });
   }
 

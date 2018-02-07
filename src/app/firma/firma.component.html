@@ -26,10 +26,10 @@
         <label for="regon">Regon:</label>
         <input type="text" placeholder="Regon firmy" id="regon" maxlength="15" required [(ngModel)]="modelFirmy.regon" name="regon" #regon="ngModel"/>
       </div>
-    </div>
-    <div [hidden]="regon.valid || regon.pristine"
-         class="alert alert-danger">
-      Regon jest wymagany
+      <div [hidden]="regon.valid || regon.pristine"
+           class="alert alert-danger">
+        Regon jest wymagany
+      </div>
     </div>
 
 

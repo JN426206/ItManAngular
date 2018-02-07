@@ -39,6 +39,10 @@ export class UrzadzenieService {
     );
   }
 
+  removeUrzadzenie(urzadzenie: Urzadzenie) {
+    return this.http.delete(`${this.urzadzenieUrl}urzadzenie/${urzadzenie.idUrzadzenia}`);
+  }
+
   private handleError<T> (operation = 'operatrion', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -48,3 +52,4 @@ export class UrzadzenieService {
     };
   }
 }
+

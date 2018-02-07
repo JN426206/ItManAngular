@@ -36,6 +36,10 @@ export class FirmaService {
     );
   }
 
+  updateFirma(firma: Firma): Observable<Firma> {
+    return this.http.put<Firma>(this.firmaUrl, firma, HttpOptions);
+  }
+
   removeFirma(firma: Firma) {
     return this.http.delete(`${this.firmaUrl}${firma.getId()}`);
   }

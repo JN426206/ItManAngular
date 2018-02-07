@@ -35,5 +35,5 @@
   </div>
 </div>
 <div class="box" *ngIf="showBoxAdd === true">
-  <app-firma (fimaAdded)="onNewFirma($firma)" (hideMe)="showOrHideBoxAddEdit(false)" [editing]="editingFirma" [(firma)]="firmaToDelete"></app-firma>
+  <app-firma (fimaAdded)="onNewFirma($firma)" (hideMe)="showOrHideBoxAddEdit(false)" [editing]="editingFirma" [firma]="firmaToDelete"></app-firma>
 </div>
